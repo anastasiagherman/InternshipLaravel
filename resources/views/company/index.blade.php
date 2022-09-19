@@ -22,12 +22,7 @@
                 <td>
                     <a href="{{route('company.edit', ['company' => $company->id])}}" class="button button-outline">Edit</a>
                     <a href="{{route('company.show', ['company' => $company->id])}}" class="button button-outline">Show</a>
-                    <form method="POST" action="{{route('company.delete', ['company' => $company->id])}}"
-                          onsubmit="return confirm('Are you sure you want to delete this item?');">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" value="delete">
-                    </form>
+                    @include('company/delete_form')
                 </td>
             </tr>
         @endforeach

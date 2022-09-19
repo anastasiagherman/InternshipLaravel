@@ -6,7 +6,9 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/auth.css',
                 'resources/js/app.js',
+                'node_modules/milligram/dist/milligram.css',
             ],
             refresh: true,
         }),

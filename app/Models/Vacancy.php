@@ -19,6 +19,17 @@ class Vacancy extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'content',
+        'location',
+        'imageUrl',
+        'type',
+        'user_id',
+        'company_id',
+        'category_id',
+        ];
+
     public function user(){
         return $this->belongsTo(User::class);
     }

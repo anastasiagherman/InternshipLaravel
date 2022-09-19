@@ -22,7 +22,8 @@ class Company extends Model
 
     protected $fillable = [
         'name',
-        'website'
+        'website',
+        'user_id'
     ];
     public function user(){
         return $this->belongsTo(User::class);
