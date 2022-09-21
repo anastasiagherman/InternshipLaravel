@@ -6,11 +6,11 @@
     <form action="{{route('company.store')}}" method="POST">
     @csrf
     <label for="company-name">
-        <input type="text" name="name"  placeholder="Company name">
+        <input type="text" name="name" value="{{ old('name') }}" placeholder="Company name">
     </label>
         @include('errors', ['errors' => $errors->get('name')])
     <label for="company-website">
-        <input type="text" name="website"  placeholder="Company website">
+        <input type="text" name="website"  value="{{ old('website') }}" placeholder="Company website">
     </label>
         @include('errors', ['errors' => $errors->get('website')])
     <button type="submit">Submit</button>

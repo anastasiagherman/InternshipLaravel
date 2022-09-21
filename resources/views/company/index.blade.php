@@ -29,7 +29,7 @@
 
         </tbody>
     </table>
-
+{{$companies->links()}}
     <a href="{{route('company.create')}}" class="button">Create Company</a>
 
     {{$companies->links()}}

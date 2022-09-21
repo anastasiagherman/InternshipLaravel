@@ -27,5 +27,6 @@
         @endforeach
         </tbody>
     </table>
+    {{$categories->links()}}
     <a href="{{route('category.create')}}" class="button">Create Category</a>
 @endsection

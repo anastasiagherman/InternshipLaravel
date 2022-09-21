@@ -22,7 +22,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative">
+        <div class="container">
             @yield('body')
         </div>
     </body>

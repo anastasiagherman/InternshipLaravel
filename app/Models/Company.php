@@ -23,8 +23,9 @@ class Company extends Model
     protected $fillable = [
         'name',
         'website',
-        'user_id'
+        'user_id',
     ];
+    protected $primaryKey = 'id';
     public function user(){
         return $this->belongsTo(User::class);
     }

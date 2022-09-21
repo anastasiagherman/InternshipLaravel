@@ -27,13 +27,14 @@
                 <td>{{$vacancy->company->name}}</td>
                 <td>{{$vacancy->user->name}}</td>
                 <td>
-                    <a href="{{route('vacancy.show', ['vacancy'=>$vacancy->id])}}" class="button-outline">Show</a>
-                    <a href="{{route('vacancy.edit', ['vacancy'=>$vacancy->id])}}" class="button-outline">Edit</a>
+                    <a href="{{route('vacancy.show', ['vacancy'=>$vacancy->id])}}" class="button button-outline">Show</a>
+                    <a href="{{route('vacancy.edit', ['vacancy'=>$vacancy->id])}}" class="button button-outline">Edit</a>
                     @include('vacancy/delete_form')
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+    <div class="pagination">{{$vacancies->links()}}</div>
     <a href="{{route('vacancy.create')}}" class="button">Create Vacancy</a>
 @endsection

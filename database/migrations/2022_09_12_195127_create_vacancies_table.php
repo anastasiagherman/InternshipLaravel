@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('imageUrl');
             $table->string('type');
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');

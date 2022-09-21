@@ -23,7 +23,7 @@ class CompanyController extends Controller
             ]);
     }
     public function edit(Company $company, Request $request){
-        //Gate::authorize('edit', $company);
+        Gate::authorize('edit', $company);
         return response()->view('company.edit', [
             'company' => $company
         ]);
@@ -41,6 +41,7 @@ class CompanyController extends Controller
     }
 
     public function store(CreateCompanyRequest $request){
+
         $company = new Company();
         $company->fill(
             $request->only($company->getFillable())
@@ -52,7 +53,6 @@ class CompanyController extends Controller
         return redirect()->route('company.index');
 
     }
-
 
     public function delete(Company $company)
     {

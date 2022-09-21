@@ -6,21 +6,22 @@
     <form action="{{route('vacancy.store')}}" method="POST">
         @csrf
         <label for="vacancy-title">
-            <input type="text" name="title"  placeholder="Vacancy title">
+            <input type="text" name="title" value="{{ old('title') }}" placeholder="Vacancy title">
         </label>
         @include('errors', ['errors' => $errors->get('title')])
         <label for="vacancy-content">
-            <input type="text" name="content"  placeholder="Vacancy content">
+            <input type="text" name="content"  value="{{ old('content') }}" placeholder="Vacancy content">
         </label>
         @include('errors', ['errors' => $errors->get('content')])
         <label for="vacancy-location">
-            <input type="text" name="location"  placeholder="Vacancy location">
+            <input type="text" name="location" value="{{ old('location') }}" placeholder="Vacancy location">
         </label>
         @include('errors', ['errors' => $errors->get('location')])
         <label for="vacancy-imageUrl">
-            <input type="text" name="imageUrl"  placeholder="Vacancy image url">
+            <input type="text" name="imageUrl"  value="{{ old('imageUrl') }}" placeholder="Vacancy image url">
         </label>
         @include('errors', ['errors' => $errors->get('imageUrl')])
+        <input type="hidden" name="test" value="1">
 
         <select id="companies" name="company_id">
             @foreach($companies as $company)

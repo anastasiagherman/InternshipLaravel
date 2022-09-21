@@ -29,9 +29,9 @@ Route::group(['prefix' => '/categories'], function() {
 
 Route::group(['prefix' => '/companies'], function() {
     Route::get('/', [CompanyController::class, 'index'])->name('company.index');
-    Route::get('/{company}', [CompanyController::class, 'show'])->name('company.show');
-    Route::get('/create', [CompanyController::class, 'create'])->name('company.create');
     Route::post('/', [CompanyController::class, 'store'])->name('company.store');
+    Route::get('/create', [CompanyController::class, 'create'])->name('company.create');
+    Route::get('/{company}', [CompanyController::class, 'show'])->name('company.show');
     Route::get('/{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
     Route::post('/{company}', [CompanyController::class, 'update'])->name('company.update');
     Route::delete('/{company}', [CompanyController::class, 'delete'])->name('company.delete');
@@ -41,6 +41,7 @@ Route::group(['prefix' => '/vacancies'], function() {
     Route::get('/', [VacancyController::class, 'index'])->name('vacancy.index');
     Route::get('/create', [VacancyController::class, 'create'])->name('vacancy.create');
     Route::post('/', [VacancyController::class, 'store'])->name('vacancy.store');
+    Route::get('/{vacancy}', [VacancyController::class, 'show'])->name('vacancy.show');
     Route::get('/{vacancy}/edit', [VacancyController::class, 'edit'])->name('vacancy.edit');
     Route::post('/{vacancy}', [VacancyController::class, 'update'])->name('vacancy.update');
     Route::delete('/{vacancy}', [VacancyController::class, 'delete'])->name('vacancy.delete');

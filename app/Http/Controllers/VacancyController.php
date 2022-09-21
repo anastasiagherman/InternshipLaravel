@@ -18,18 +18,6 @@ class VacancyController extends Controller
                 'vacancies' => Vacancy::query()->paginate(5, ['*'], 'page')]);
     }
 
-    public function edit(Vacancy $vacancy, Request $request){
-        return response()
-            ->view('vacancy.edit', [
-                'vacancy'=>$vacancy
-            ]);
-    }
-
-    public function update(Vacancy $vacancy, Request $request){
-        $vacancy->update($request->validated());
-        return redirect()->route('vacancy.index');
-
-    }
 
     public function create(){
         Gate::authorize('create', new Vacancy());
@@ -40,8 +28,9 @@ class VacancyController extends Controller
     }
 
     public function store(CreateVacancyRequest $request){
+//        dd($request->all());
         $vacancy = new Vacancy();
-        $data = $request->validated();
+        $data=$request->validated();
         $data['user_id'] = $request->user()->id;
         $vacancy->fill($data);
         $vacancy->save();
@@ -49,11 +38,32 @@ class VacancyController extends Controller
         return redirect()->route('vacancy.index');
     }
 
+    public function show(Vacancy $vacancy){
+        return response()
+            ->view('vacancy.show', [
+                'vacancy'=>$vacancy,
+            ]);
+    }
+
+    public function edit(Vacancy $vacancy){
+        return response()
+            ->view('vacancy.edit', [
+                'vacancy'=>$vacancy,
+                'companies'=>Company::all(),
+                'categories'=>Category::all(),
+            ]);
+    }
+
+    public function update(Vacancy $vacancy, CreateVacancyRequest $request){
+        $vacancy->update($request->validated());
+        return redirect()->route('vacancy.index');
+
+    }
 
     public function delete(Vacancy $vacancy)
     {
         $vacancy->delete();
-        return redirect('vacancy.index');
+        return redirect()->route('vacancy.index');
     }
 
 }

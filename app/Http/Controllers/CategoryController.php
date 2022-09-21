@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -31,30 +33,25 @@ class CategoryController extends Controller
             ]);
     }
 
-    public function update(Request $request, Category $category ){
-        $request->validate([
-            'name'=>'required|string:255',
-        ]);
-        $category->update($request->all());
+    public function update(CreateCategoryRequest $request, Category $category ){
+        $category->update($request->validated());
         return redirect()->route('category.index');
 
     }
 
 
     public function create(){
+        Gate::authorize('create', new Category());
         return response()
         ->view('category.create');
 
     }
 
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-
-         $request->validate([
-              'name'=>'required|string:255',
-          ]);
-
-          Category::create($request->all());
+        $category = new Category();
+        $category->fill($request->only($category->getFillable()));
+        $category->save();
 
           return redirect()->route('category.index');
 

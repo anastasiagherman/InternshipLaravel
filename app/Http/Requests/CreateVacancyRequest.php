@@ -30,9 +30,9 @@ class CreateVacancyRequest extends FormRequest
             'content'=>'required|string:255',
             'location'=>'required|string:255',
             'imageUrl'=>'required|nullable|string:255',
-            'type'=>'required|in: part-time, full-time',
-            'company_id'=>'required|exists:'.Company::class.', id',
-            'category_id'=>'required|exists:'.Category::class.', id',
+            'type'=>'required|in:part-time,full-time',
+            'company_id'=>'exists:App\Models\Company,id',
+            'category_id'=>'exists:App\Models\Category,id',
         ];
     }
 }
